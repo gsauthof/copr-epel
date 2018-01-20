@@ -1,0 +1,50 @@
+--- patchelf-0.8/configure.ac~	2014-01-14 13:17:47.000000000 +0000
++++ patchelf-0.8/configure.ac	2014-06-07 07:46:37.583148431 +0100
+@@ -6,5 +6,13 @@
+ AM_PROG_CC_C_O
+ AC_PROG_CXX
+ 
++AC_CHECK_HEADERS([attr/libattr.h attr/error_context.h])
++AC_SEARCH_LIBS(attr_copy_file, attr)
++AC_CHECK_FUNCS([attr_copy_file])
++
++AC_CHECK_HEADERS([sys/acl.h acl/libacl.h])
++AC_SEARCH_LIBS(perm_copy_file, acl)
++AC_CHECK_FUNCS([perm_copy_file])
++
+ AC_CONFIG_FILES([Makefile src/Makefile tests/Makefile patchelf.spec])
+ AC_OUTPUT
+--- patchelf-0.8/src/patchelf.cc~	2014-01-14 13:17:47.000000000 +0000
++++ patchelf-0.8/src/patchelf.cc	2014-06-07 07:48:20.985493061 +0100
+@@ -17,6 +17,16 @@
+ #include <fcntl.h>
+ #include <limits.h>
+ 
++#ifdef HAVE_ATTR_LIBATTR_H
++# include <attr/libattr.h>
++#endif
++#ifdef HAVE_SYS_ACL_H
++# include <sys/acl.h>
++#endif
++#ifdef HAVE_ACL_LIBACL_H
++# include <acl/libacl.h>
++#endif
++
+ #include "elf.h"
+ 
+ using namespace std;
+@@ -370,7 +380,14 @@
+ 
+     if (close(fd) != 0) error("close");
+ 
++#if defined(HAVE_ATTR_COPY_FILE)
++    if (attr_copy_file(fileName.c_str(), fileName2.c_str(), 0, 0) != 0) error("attr_copy_file");
++#endif
++#if defined(HAVE_PERM_COPY_FILE)
++    if (perm_copy_file(fileName.c_str(), fileName2.c_str(), 0) != 0) error("perm_copy_file");
++#else
+     if (chmod(fileName2.c_str(), fileMode) != 0) error("chmod");
++#endif
+ 
+     if (rename(fileName2.c_str(), fileName.c_str()) != 0) error("rename");
+ }
