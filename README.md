@@ -1,3 +1,5 @@
+[![patchelf](https://copr.fedorainfracloud.org/coprs/gsauthof/epel/package/patchelf/status_image/last_build.png)][5]
+
 This repository contains [Fedora][2] RPM source packages that aren't
 available in the Fedora [EPEL repository][3], yet.
 
@@ -18,3 +20,5 @@ https://copr.fedorainfracloud.org/coprs/gsauthof/epel/
 [2]: https://en.wikipedia.org/wiki/Fedora_(operating_system)
 [3]: https://fedoraproject.org/wiki/EPEL
 [4]: https://copr.fedorainfracloud.org/coprs/
+[5]: https://copr.fedorainfracloud.org/coprs/gsauthof/epel/
+
