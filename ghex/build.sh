@@ -21,7 +21,7 @@ specfile=$(ls *.spec)
 curl -L -O $url
 echo "$checksum  $filename" | sha256sum -c -
 
-echo rpmbuild \
+rpmbuild \
  --define "%{_sourcedir} $PWD" \
  --define "%{_specdir} $PWD" \
  --define "_rpmdir $outdir" \
