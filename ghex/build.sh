@@ -22,8 +22,8 @@ curl -L -O $url
 echo "$checksum  $filename" | sha256sum -c -
 
 rpmbuild \
- --define "%{_sourcedir} $PWD" \
- --define "%{_specdir} $PWD" \
+ --define "_sourcedir $PWD" \
+ --define "_specdir $PWD" \
  --define "_rpmdir $outdir" \
  --define "_srcrpmdir $outdir" \
  -bs $specfile
