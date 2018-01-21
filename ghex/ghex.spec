@@ -1,6 +1,5 @@
 # first two digits of version
 # in the copr environment, it looks like the awk ignores the `-F.`
-#%global release_version %(echo %{version} | awk -F. '{print $1"."$2}')
 %global release_version %(echo %{version} | cut -d. -f1-2)
 
 Name:           ghex
