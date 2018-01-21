@@ -3,4 +3,4 @@
 .PHONY: srpm
 
 srpm:
-	bash buils.sh $(outdir) $(spec)
+	bash build.sh $(outdir) $(spec)
