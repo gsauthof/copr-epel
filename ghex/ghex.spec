@@ -1,5 +1,5 @@
 # first two digits of version
-# in the copr environment, it looks like the awk ignores the `-F.`
+# this fails with rpkg - imported version uses awk, unimportant optimization
 %global release_version %(echo %{version} | cut -d. -f1-2)
 
 Name:           ghex
