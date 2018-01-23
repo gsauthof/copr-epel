@@ -8,6 +8,9 @@ outdir=$1
 specdir=$2
 specfile=$(ls *.spec)
 
+# to get the commit we're building on into the build logs
+git log -1
+
 if [ ${url#https} = $url ]; then
   just_https=""
 else
