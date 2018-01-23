@@ -9,7 +9,7 @@ specdir=$2
 specfile=$(ls *.spec)
 
 # to get the commit we're building on into the build logs
-git log -1
+cat ../.git/refs/heads/master
 
 if [ ${url#https} = $url ]; then
   just_https=""
