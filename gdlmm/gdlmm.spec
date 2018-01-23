@@ -44,7 +44,10 @@ This package contains the full API documentation for %{name}.
 
 %build
 # required on CentOS/RHEL 7 (because of GCC 4.8)
-export CXXFLAGS="-std=gnu++11 %__global_cxxflags"
+# on Fedora 26, CXXFLAGS defaults to %__global_cxxflags
+# which has the same content as %optflags, though
+# CentOS/RHEL 7 just has %optflags
+export CXXFLAGS="-std=gnu++11 %optflags"
 %configure
 make %{?_smp_mflags}
 
