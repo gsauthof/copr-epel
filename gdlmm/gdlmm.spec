@@ -43,9 +43,9 @@ This package contains the full API documentation for %{name}.
 
 
 %build
-%configure
 # required on CentOS/RHEL 7 (because of GCC 4.8)
-export CXXFLAGS="-std=gnu++11 $CXXFLAGS"
+export CXXFLAGS="-std=gnu++11 %__global_cxxflags"
+%configure
 make %{?_smp_mflags}
 
 
