@@ -5,9 +5,9 @@ set -eux
 env
 
 name=maildrop
-version=2.8.3.20151220
+version=2.8.5
 filename=$name-$version.tar.bz2
 url=http://prdownloads.sourceforge.net/courier/$name/$version/$name-$version.tar.bz2
-checksum=ff2c8018510129e9b3681e73717f8628e7c0310c0d8f74919a7cfab6aadab857
+checksum=c21174ef882aeb169031bb5886b55959687074415153232f4c60695405fcddb1
 
 . ../build.sh

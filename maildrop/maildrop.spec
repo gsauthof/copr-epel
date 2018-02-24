@@ -2,8 +2,8 @@
 
 Summary: Mail delivery agent with filtering abilities
 Name: maildrop
-Version: 2.8.3.20151220
-Release: 5%{?dist}
+Version: 2.8.5
+Release: 1%{?dist}
 # Exception is explicit permission to link to OpenSSL
 License: GPLv2 with exceptions
 Group: System Environment/Daemons
