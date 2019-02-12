@@ -7,6 +7,7 @@ Group:		System Environment/Base
 License:	GPLv2
 URL:		http://pyropus.ca/software/memtester/
 Source0:	http://pyropus.ca/software/memtester/old-versions/%{name}-%{version}.tar.gz
+#sha256(Source0) = f9dfe2fd737c38fad6535bbab327da9a21f7ce4ea6f18c7b3339adef6bf5fd88
 Patch0:		memtester-4.0.8-debuginfo.patch
 
 BuildRequires:  gcc
