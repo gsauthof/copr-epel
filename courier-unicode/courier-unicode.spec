@@ -9,6 +9,9 @@ Source0: https://downloads.sourceforge.net/project/courier/%{name}/%{version}/%{
 Source1: https://downloads.sourceforge.net/project/courier/%{name}/%{version}/%{name}-%{version}.tar.bz2.sig
 Source2: pubkey.maildrop
 
+#sha256(Source0) = 6b46011d465918af7d0ed41fbf21d918449820bd3ef7e651dbc56eb2933a8711
+#sha256(Source1) = d964d231d7c72f775a86ebf54ea2b843307105a53664822436c0e6f745ebad11
+
 BuildRequires: gcc-c++
 BuildRequires: gcc
 BuildRequires: gnupg
