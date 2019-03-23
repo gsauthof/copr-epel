@@ -17,12 +17,11 @@ Source2: pubkey.maildrop
 
 Patch0001: 0001-Fix-SIGSEGV-in-reformime-1613761.patch
 
-Requires: courier-unicode >= 1.4
 BuildRequires: automake, libtool, autoconf
 BuildRequires: gcc-c++, gdbm-devel, db4-devel, pcre-devel
 BuildRequires: gawk
 BuildRequires: gnupg
-BuildRequires: courier-unicode-devel >= 1.4
+BuildRequires: courier-unicode-devel >= 2.0
 #Once this is available uncomment and rebuild
 #BuildRequires: courier-authlib-devel
 
