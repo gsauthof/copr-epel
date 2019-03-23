@@ -12,6 +12,9 @@ Source0: https://downloads.sourceforge.net/project/courier/%{name}/%{version}/%{
 Source1: https://downloads.sourceforge.net/project/courier/%{name}/%{version}/%{name}-%{version}.tar.bz2.sig
 Source2: pubkey.maildrop
 
+#sha256(Source0) = fceae3b85dd9caf4d769d76e5d1179c4065b7f3af88623008ad44f9e08299794
+#sha256(Source1) = 3099ef2e88c344025b29f0be0539171be8470db80d9d4becc8d2f8178a706bb0
+
 Patch0001: 0001-Fix-SIGSEGV-in-reformime-1613761.patch
 
 Requires: courier-unicode >= 1.4
