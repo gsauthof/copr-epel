@@ -1,0 +1,47 @@
+From 1186c36c44ca581fd4819f59d1823d3f2ec17164 Mon Sep 17 00:00:00 2001
+From: "Brian C. Lane" <bcl@brianlane.com>
+Date: Wed, 8 Aug 2018 13:06:58 -0700
+Subject: [PATCH] Fix SIGSEGV in  reformime (#1613761)
+
+Check for NULL section when running strtok on it for decode and
+do_extract handling.
+---
+ libs/rfc2045/reformime.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/libs/rfc2045/reformime.c b/libs/rfc2045/reformime.c
+index 9851c65..49a0ebd 100644
+--- a/libs/rfc2045/reformime.c
++++ b/libs/rfc2045/reformime.c
+@@ -1164,10 +1164,11 @@ int rc=0;
+ 	}
+ 	else if (dodecode)
+ 	{
+-		mimesection = strtok(section,",");
++		mimesection = section ? strtok(section, ","):NULL;
+ 		do {
+ 			print_decode(p, mimesection);
+-			mimesection = strtok(NULL,",");
++			if (mimesection)
++				mimesection = strtok(NULL,",");
+ 		} while (mimesection != NULL);
+ 	}
+ 	else if (dorewrite)
+@@ -1176,11 +1177,12 @@ int rc=0;
+ 		dsn(p, dodsn == 2);
+ 	else if (do_extract)
+ 	{
+-		mimesection = strtok(section,",");
++		mimesection = section ? strtok(section, ","):NULL;
+ 		do {
+ 			extract_section(p, mimesection, extract_filename,
+ 					argc-argn, argv+argn, do_extract);
+-			mimesection = strtok(NULL,",");
++			if (mimesection)
++				mimesection = strtok(NULL,",");
+ 		} while (mimesection != NULL);
+ 	}
+ 	else if (dovalidate)
+-- 
+2.17.1
+

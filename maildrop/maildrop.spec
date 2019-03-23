@@ -2,19 +2,18 @@
 
 Summary: Mail delivery agent with filtering abilities
 Name: maildrop
-Version: 2.8.5
-Release: 1%{?dist}
+Version: 2.9.3
+Release: 2%{?dist}
 # Exception is explicit permission to link to OpenSSL
 License: GPLv2 with exceptions
 Group: System Environment/Daemons
 URL: http://www.courier-mta.org/maildrop/
-Source0: http://prdownloads.sourceforge.net/courier/%{name}/%{version}/%{name}-%{version}.tar.bz2
-Source1: http://prdownloads.sourceforge.net/courier/%{name}/%{version}/%{name}-%{version}.tar.bz2.sig
+Source0: https://downloads.sourceforge.net/project/courier/%{name}/%{version}/%{name}-%{version}.tar.bz2
+Source1: https://downloads.sourceforge.net/project/courier/%{name}/%{version}/%{name}-%{version}.tar.bz2.sig
 Source2: pubkey.maildrop
 
-Patch0001: 0001-Pass-a-format-string-to-syslog-calls.patch
+Patch0001: 0001-Fix-SIGSEGV-in-reformime-1613761.patch
 
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: courier-unicode >= 1.4
 BuildRequires: automake, libtool, autoconf
 BuildRequires: gcc-c++, gdbm-devel, db4-devel, pcre-devel
@@ -53,10 +52,9 @@ delivering the message. The user can fix the typo without causing any
 mail to be lost.
 
 %prep
-%setup -q
+%autosetup -p1
 gpg --import %{SOURCE2}
 gpg --verify %{SOURCE1} %{SOURCE0}
-%patch0001 -p1
 
 %build
 %configure --disable-shared \
@@ -75,11 +73,7 @@ make install DESTDIR=%{buildroot} htmldir=%{_defaultdocdir}/%{name}
 cp -pr COPYING COPYING.GPL AUTHORS %{buildroot}%{_defaultdocdir}/%{name}
 cp -pr README README.postfix ChangeLog UPGRADE %{buildroot}%{_defaultdocdir}/%{name}
 
-%clean
-rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root,-)
 %doc %{_defaultdocdir}/%{name}
 %attr(6755,root,mail) %{_bindir}/maildrop
 %attr(6755,root,mail) %{_bindir}/lockmail
@@ -97,9 +91,23 @@ rm -rf %{buildroot}
 %{_mandir}/man8/*.8*
 
 %changelog
-* Tue Jan 16 2018 Brian C. Lane <bcl@redhat.com> - 2.8.3.20151220-5
-- Rebuild for ABI incompatible gdbm 1.13-6
-- Fix maildrop.C syslog calls when using -Werror=format-security
+* Wed Aug 08 2018 Brian C. Lane <bcl@redhat.com> - 2.9.3-2
+- Fix SIGSEGV in reformime (#1613761)
+
+* Tue Jul 24 2018 Brian C. Lane <bcl@redhat.com> - 2.9.3-1
+- Upstream 2.9.3
+
+* Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 2.9.1-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
+
+* Thu Feb 08 2018 Fedora Release Engineering <releng@fedoraproject.org> - 2.9.1-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
+
+* Tue Jan 16 2018 Brian C. Lane <bcl@redhat.com> - 2.9.1-2
+- Rebuild for ABI incompatible gdbm 1.14
+
+* Tue Sep 26 2017 Brian C. Lane <bcl@redhat.com> - 2.9.1-1
+- Upstream 2.9.1
 
 * Thu Aug 03 2017 Fedora Release Engineering <releng@fedoraproject.org> - 2.8.3.20151220-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
