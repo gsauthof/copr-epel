@@ -43,7 +43,7 @@ The courier-unicode-devel package includes the header files and documentation
 necessary for developing programs which will use the libcourier-unicode library.
 
 %prep
-%setup -q
+%autosetup -n %{srcname}-%{version}
 gpg --import %{SOURCE2}
 gpg --verify %{SOURCE1} %{SOURCE0}
 
