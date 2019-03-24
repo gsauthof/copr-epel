@@ -21,7 +21,7 @@ BuildRequires: automake, libtool, autoconf
 BuildRequires: gcc-c++, gdbm-devel, db4-devel, pcre-devel
 BuildRequires: gawk
 BuildRequires: gnupg
-BuildRequires: courier-unicode-devel >= 2.0
+BuildRequires: courier-unicode2-devel >= 2.0
 #Once this is available uncomment and rebuild
 #BuildRequires: courier-authlib-devel
 

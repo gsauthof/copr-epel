@@ -1,12 +1,13 @@
+%global srcname courier-unicode
 Summary: A library implementing algorithms related to the Unicode Standard
-Name: courier-unicode
+Name: %{srcname}2
 Version: 2.0
 Release: 5%{?dist}
 License: GPLv3
 Group: System Environment/Libraries
 URL: http://www.courier-mta.org/unicode/
-Source0: https://downloads.sourceforge.net/project/courier/%{name}/%{version}/%{name}-%{version}.tar.bz2
-Source1: https://downloads.sourceforge.net/project/courier/%{name}/%{version}/%{name}-%{version}.tar.bz2.sig
+Source0: https://downloads.sourceforge.net/project/courier/%{srcname}/%{version}/%{srcname}-%{version}.tar.bz2
+Source1: https://downloads.sourceforge.net/project/courier/%{srcname}/%{version}/%{srcname}-%{version}.tar.bz2.sig
 Source2: pubkey.maildrop
 
 #sha256(Source0) = 6b46011d465918af7d0ed41fbf21d918449820bd3ef7e651dbc56eb2933a8711
