@@ -60,6 +60,9 @@ rm %{buildroot}%{_libdir}/*.la
 %check
 %{__make} check
 
+# for EPEL 7
+%ldconfig_scriptlets
+
 %files
 %license COPYING
 %doc README ChangeLog AUTHORS
