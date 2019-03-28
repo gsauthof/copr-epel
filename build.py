@@ -15,9 +15,13 @@ def print_git():
     changeset = open('../.git/refs/heads/master').read().strip()
     print('Git repo at: {}'.format(changeset))
 
+def url2filename(url):
+    filename = url[url.rindex('/')+1:]
+    return filename
+
 def download(url):
     print('Fetching {} ... '.format(url), end='')
-    filename = url[url.rindex('/')+1:]
+    filename = url2filename(url)
     just_https = ([ '--proto-redir', '=https' ] if url.startswith('https://')
         else [])
     subprocess.run(['curl'] + just_https + ['--silent', '--show-error',
@@ -64,11 +68,11 @@ def rpmspec_yield_urls(specfile):
             universal_newlines=True)
     yield from yield_urls(xs)
 
-def get_checksums(specfile):
+def get_checksums_from_file(specfile, prefix='#sha256('):
     d = {}
     with open(specfile) as f:
         for line in f:
-            if line.startswith('#sha256('):
+            if line.startswith(prefix):
                 i = line.index('(')
                 j = line.index(')')
                 k = line.index('=')
@@ -77,9 +81,16 @@ def get_checksums(specfile):
                 d[key] = checksum
     return d
 
+
+def get_checksums(specfile):
+    sources = 'sources'
+    if os.path.exists(sources):
+        return get_checksums_from_file(sources, prefix='SHA512')
+    else:
+        return get_checksums_from_file(specfile)
+
 # cf. https://stackoverflow.com/a/44873382/427158
-def sha256sum(filename):
-    h  = hashlib.sha256()
+def chksum(filename, h):
     b  = bytearray(128*1024)
     mv = memoryview(b)
     with open(filename, 'rb', buffering=0) as f:
@@ -87,16 +98,29 @@ def sha256sum(filename):
             h.update(mv[:n])
     return h.hexdigest()
 
+def sha256sum(filename):
+    h  = hashlib.sha256()
+    return chksum(filename, h)
+
+def sha512sum(filename):
+    h  = hashlib.sha512()
+    return chksum(filename, h)
+
 def verify_sources(urls, checksums):
     for key, url in urls:
         if '://' not in url:
             continue
         filename = download(url)
-        checksum = sha256sum(filename)
-        if checksum != checksums[key]:
-            raise RuntimeError(('sha256 checksum of {} ({}) {} '
+        if key in checksums:
+            ref_checksum = checksums[key]
+        else:
+            ref_checksum = checksums[url2filename(url)]
+        f = sha256sum if len(ref_checksum) < 128 else sha512sum
+        checksum = f(filename)
+        if checksum != ref_checksum:
+            raise RuntimeError(('SHA checksum of {} ({}) {} '
                 'does NOT match the recorded one: {}').format(filename, key,
-                    checksum, checksums[key]))
+                    checksum, ref_checksum))
 
 def build_srpm(specdir, outdir, specfile):
     subprocess.run(['rpmbuild', '--define', '_sourcedir {}'.format(specdir),
