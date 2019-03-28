@@ -1,17 +1,14 @@
 %global srcname courier-unicode
 Summary: A library implementing algorithms related to the Unicode Standard
 Name: %{srcname}2
-Version: 2.0
-Release: 5%{?dist}
+Version: 2.1
+Release: 1%{?dist}
 License: GPLv3
 Group: System Environment/Libraries
 URL: http://www.courier-mta.org/unicode/
 Source0: https://downloads.sourceforge.net/project/courier/%{srcname}/%{version}/%{srcname}-%{version}.tar.bz2
 Source1: https://downloads.sourceforge.net/project/courier/%{srcname}/%{version}/%{srcname}-%{version}.tar.bz2.sig
 Source2: pubkey.maildrop
-
-#sha256(Source0) = 6b46011d465918af7d0ed41fbf21d918449820bd3ef7e651dbc56eb2933a8711
-#sha256(Source1) = d964d231d7c72f775a86ebf54ea2b843307105a53664822436c0e6f745ebad11
 
 BuildRequires: gcc-c++
 BuildRequires: gcc
@@ -67,7 +64,7 @@ rm %{buildroot}%{_libdir}/*.la
 %license COPYING
 %doc README ChangeLog AUTHORS
 %{_libdir}/libcourier-unicode.so.4
-%{_libdir}/libcourier-unicode.so.4.0.0
+%{_libdir}/libcourier-unicode.so.4.1.0
 
 %files devel
 %{_includedir}/courier-unicode.h
@@ -79,6 +76,12 @@ rm %{buildroot}%{_libdir}/*.la
 %{_mandir}/man7/*
 
 %changelog
+* Sat Mar 23 2019 Georg Sauthoff <mail@gms.tf> - 2.1-1
+- Update to latest upstream version
+
+* Thu Jan 31 2019 Fedora Release Engineering <releng@fedoraproject.org> - 2.0-6
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
 * Thu Jul 19 2018 Brian C. Lane <bcl@redhat.com> - 2.0-5
 - Remove ldconfig, it no longer needs to be called on un/installs
 
