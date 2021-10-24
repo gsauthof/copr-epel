@@ -152,7 +152,8 @@ and plugins.
   -DBUILD_mmdbresolve=OFF \
 %endif
   -DBUILD_randpktdump=OFF \
-  -DBUILD_androiddump=ON \
+  -DBUILD_androiddump=OFF \
+  -DBUILD_etwdump=OFF \
   -DENABLE_SMI=ON \
   -DENABLE_PLUGINS=ON \
   -DENABLE_NETLINK=ON \
@@ -160,6 +161,7 @@ and plugins.
   %{nil}
 
 #  -DBUILD_sdjournal=ON
+#  -DBUILD_androiddump=ON
 
 %cmake3_build
 
@@ -216,9 +218,14 @@ find %{buildroot} -type f -name "*.la" -delete
 %files
 ##%{_datadir}/appdata/%{name}.appdata.xml
 ##%{_datadir}/applications/wireshark.desktop
+%{_datadir}/applications/org.wireshark.Wireshark.desktop
+%{_datadir}/metainfo/org.wireshark.Wireshark.metainfo.xml
+
 %{_datadir}/icons/hicolor/*/apps/*
 %{_datadir}/icons/hicolor/*/mimetypes/*
 ##%{_datadir}/mime/packages/wireshark.xml
+%{_datadir}/mime/packages/org.wireshark.Wireshark.xml
+
 %{_bindir}/wireshark
 %{_mandir}/man1/wireshark.*
 #%{_sysusersdir}/%{name}.conf
