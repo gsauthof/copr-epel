@@ -257,7 +257,7 @@ find %{buildroot} -type f -name "*.la" -delete
 %{_libdir}/wireshark/extcap/sshdump
 #%{_libdir}/wireshark/extcap/sdjournal
 %{_libdir}/wireshark/extcap/dpauxmon
-%{_libdir}/wireshark/extcap/androiddump
+##%{_libdir}/wireshark/extcap/androiddump
 %dir %{_libdir}/wireshark/cmake
 %{_libdir}/wireshark/cmake/*.cmake
 #the version wireshark uses to store plugins is only x.y, not .z
@@ -281,7 +281,7 @@ find %{buildroot} -type f -name "*.la" -delete
 %{_mandir}/man1/reordercap.*
 %{_mandir}/man1/sshdump.*
 %{_mandir}/man1/udpdump.*
-%{_mandir}/man1/androiddump.*
+##%{_mandir}/man1/androiddump.*
 %{_mandir}/man1/captype.*
 %{_mandir}/man1/ciscodump.*
 %{_mandir}/man1/randpktdump.*
