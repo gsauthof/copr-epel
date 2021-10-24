@@ -1,6 +1,9 @@
 # imported from https://src.fedoraproject.org/rpms/wireshark/raw/rawhide/f/wireshark.spec
 
 %undefine __cmake_in_source_build
+%undefine __cmake
+%define __cmake /usr/bin/cmake3
+
 ##%global with_lua 1
 %global with_lua 0
 ##%global with_maxminddb 1
@@ -84,11 +87,14 @@ Buildrequires: git-core
 %if 0%{?fedora}
 Buildrequires: python3-devel
 %endif
-Buildrequires: cmake
+#Buildrequires: cmake
+Buildrequires: cmake3
 #needed for sdjournal external capture interface
 ##BuildRequires: systemd-devel
 ##BuildRequires: libnghttp2-devel
 ##BuildRequires: systemd-rpm-macros
+
+
 
 Obsoletes: wireshark-qt, wireshark-gtk
 
