@@ -98,6 +98,9 @@ Buildrequires: cmake3
 # for cmake3 build macro - really needed?
 BuildRequires: epel-rpm-macros
 
+# Wireshark switched from POD to asciidoctor between 3.5.0 and 3.6.0 ...
+BuildRequires: rubygem-asciidoctor
+
 
 Obsoletes: wireshark-qt, wireshark-gtk
 
@@ -211,14 +214,14 @@ find %{buildroot} -type f -name "*.la" -delete
 %ldconfig_postun cli
 
 %files
-%{_datadir}/appdata/%{name}.appdata.xml
+##%{_datadir}/appdata/%{name}.appdata.xml
 ##%{_datadir}/applications/wireshark.desktop
 %{_datadir}/icons/hicolor/*/apps/*
 %{_datadir}/icons/hicolor/*/mimetypes/*
-%{_datadir}/mime/packages/wireshark.xml
+##%{_datadir}/mime/packages/wireshark.xml
 %{_bindir}/wireshark
 %{_mandir}/man1/wireshark.*
-%{_sysusersdir}/%{name}.conf
+#%{_sysusersdir}/%{name}.conf
 
 %files cli
 %license COPYING
