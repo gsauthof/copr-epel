@@ -1,35 +1,39 @@
+# imported from https://src.fedoraproject.org/rpms/wireshark/raw/rawhide/f/wireshark.spec
+
 %undefine __cmake_in_source_build
-%global with_lua 1
-%global with_maxminddb 1
-%global plugins_version 3.4
+##%global with_lua 1
+%global with_lua 0
+##%global with_maxminddb 1
+%global with_maxminddb 0
+%global plugins_version 3.6
 # added temporarily due to errors in libqt5core
 %define _lto_cflags %{nil}
 
 Summary:	Network traffic analyzer
 Name:		wireshark
-Version:	3.4.9
+Version:	3.6.0rc1
 Release:	1%{?dist}
 Epoch:		1
 License:	GPL+
 Url:		http://www.wireshark.org/
 
 Source0:	https://wireshark.org/download/src/%{name}-%{version}.tar.xz
-Source1:        https://www.wireshark.org/download/src/all-versions/SIGNATURES-%{version}.txt
-Source2:	90-wireshark-usbmon.rules
-Source3:	wireshark.sysusers
+#Source1:        https://www.wireshark.org/download/src/all-versions/SIGNATURES-%{version}.txt
+#Source2:	90-wireshark-usbmon.rules
+#Source3:	wireshark.sysusers
 
 # Fedora-specific
-Patch2:		wireshark-0002-Customize-permission-denied-error.patch
+##Patch2:		wireshark-0002-Customize-permission-denied-error.patch
 # Will be proposed upstream
-Patch3:		wireshark-0003-fix-string-overrun-in-plugins-profinet.patch
+##Patch3:		wireshark-0003-fix-string-overrun-in-plugins-profinet.patch
 # Fedora-specific
-Patch4:		wireshark-0004-Restore-Fedora-specific-groups.patch
+##Patch4:		wireshark-0004-Restore-Fedora-specific-groups.patch
 # Fedora-specific
-Patch5:		wireshark-0005-Fix-paths-in-a-wireshark.desktop-file.patch
+##Patch5:		wireshark-0005-Fix-paths-in-a-wireshark.desktop-file.patch
 # Fedora-specific
-Patch6:		wireshark-0006-Move-tmp-to-var-tmp.patch
-Patch7:		wireshark-0007-cmakelists.patch
-Patch9:		wireshark-0009-smc-support.patch
+##Patch6:		wireshark-0006-Move-tmp-to-var-tmp.patch
+##Patch7:		wireshark-0007-cmakelists.patch
+##Patch9:		wireshark-0009-smc-support.patch
 
 #install tshark together with wireshark GUI
 Requires:	%{name}-cli = %{epoch}:%{version}-%{release}
