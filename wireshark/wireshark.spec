@@ -2,6 +2,9 @@
 
 %undefine __cmake_in_source_build
 
+# also disable in-source builds in backported macros ...
+%undefine __cmake3_in_source_build
+
 ##%global with_lua 1
 %global with_lua 0
 ##%global with_maxminddb 1
