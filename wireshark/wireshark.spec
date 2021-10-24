@@ -1,8 +1,6 @@
 # imported from https://src.fedoraproject.org/rpms/wireshark/raw/rawhide/f/wireshark.spec
 
 %undefine __cmake_in_source_build
-%undefine __cmake
-%define __cmake /usr/bin/cmake3
 
 ##%global with_lua 1
 %global with_lua 0
@@ -94,7 +92,7 @@ Buildrequires: cmake3
 ##BuildRequires: libnghttp2-devel
 ##BuildRequires: systemd-rpm-macros
 
-# for cmake3 build macro
+# for cmake3 build macro - really needed?
 BuildRequires: epel-rpm-macros
 
 
@@ -134,7 +132,7 @@ and plugins.
 %autosetup -S git -n wireshark-3.6.0rc1
 
 %build
-%cmake -G "Unix Makefiles" \
+%cmake3 -G "Unix Makefiles" \
   -DDISABLE_WERROR=ON \
   -DBUILD_wireshark=ON \
 %if %{with_lua} && 0%{?fedora}
@@ -157,10 +155,10 @@ and plugins.
 
 #  -DBUILD_sdjournal=ON
 
-%cmake_build
+%cmake3_build
 
 %install
-%cmake_install
+%cmake3_install
 
 desktop-file-validate %{buildroot}%{_datadir}/applications/wireshark.desktop
 
