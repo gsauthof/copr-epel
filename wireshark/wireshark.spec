@@ -11,16 +11,17 @@
 
 Summary:	Network traffic analyzer
 Name:		wireshark
-Version:	3.6.0rc1
+Version:	3.6.0~rc1
 Release:	1%{?dist}
 Epoch:		1
 License:	GPL+
 Url:		http://www.wireshark.org/
 
-Source0:	https://wireshark.org/download/src/%{name}-%{version}.tar.xz
-#Source1:        https://www.wireshark.org/download/src/all-versions/SIGNATURES-%{version}.txt
-#Source2:	90-wireshark-usbmon.rules
-#Source3:	wireshark.sysusers
+##Source0:	https://wireshark.org/download/src/%{name}-%{version}.tar.xz
+Source0:	https://wireshark.org/download/src/%{name}-3.6.0rc1.tar.xz
+##Source1:        https://www.wireshark.org/download/src/all-versions/SIGNATURES-%{version}.txt
+##Source2:	90-wireshark-usbmon.rules
+##Source3:	wireshark.sysusers
 
 # Fedora-specific
 ##Patch2:		wireshark-0002-Customize-permission-denied-error.patch
@@ -85,9 +86,9 @@ Buildrequires: python3-devel
 %endif
 Buildrequires: cmake
 #needed for sdjournal external capture interface
-BuildRequires: systemd-devel
-BuildRequires: libnghttp2-devel
-BuildRequires: systemd-rpm-macros
+##BuildRequires: systemd-devel
+##BuildRequires: libnghttp2-devel
+##BuildRequires: systemd-rpm-macros
 
 Obsoletes: wireshark-qt, wireshark-gtk
 
@@ -144,8 +145,9 @@ and plugins.
   -DENABLE_PLUGINS=ON \
   -DENABLE_NETLINK=ON \
   -DBUILD_dcerpcidl2wrs=OFF \
-  -DBUILD_sdjournal=ON \
   %{nil}
+
+#  -DBUILD_sdjournal=ON \
 
 %cmake_build
 
