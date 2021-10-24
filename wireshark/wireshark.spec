@@ -61,7 +61,7 @@ BuildRequires:	libpcap-devel >= 0.9
 BuildRequires:	libselinux-devel
 BuildRequires:	libsmi-devel
 BuildRequires:	openssl-devel
-BuildRequires:	desktop-file-utils
+##BuildRequires:	desktop-file-utils
 BuildRequires:	xdg-utils
 BuildRequires:	bison
 BuildRequires:	flex
@@ -160,7 +160,7 @@ and plugins.
 %install
 %cmake3_install
 
-desktop-file-validate %{buildroot}%{_datadir}/applications/wireshark.desktop
+##desktop-file-validate %{buildroot}%{_datadir}/applications/wireshark.desktop
 
 #install devel files (inspired by debian/wireshark-dev.header-files)
 install -d -m 0755  %{buildroot}%{_includedir}/wireshark
@@ -209,7 +209,7 @@ fi
 
 %files
 %{_datadir}/appdata/%{name}.appdata.xml
-%{_datadir}/applications/wireshark.desktop
+##%{_datadir}/applications/wireshark.desktop
 %{_datadir}/icons/hicolor/*/apps/*
 %{_datadir}/icons/hicolor/*/mimetypes/*
 %{_datadir}/mime/packages/wireshark.xml
