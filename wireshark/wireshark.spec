@@ -168,6 +168,10 @@ and plugins.
 %install
 %cmake3_install
 
+# remove superfluous man pages
+rm %{buildroot}%{_mandir}/man1/androiddump.* \
+   %{buildroot}%{_mandir}/man1/etwdump.*
+
 ##desktop-file-validate %{buildroot}%{_datadir}/applications/wireshark.desktop
 
 #install devel files (inspired by debian/wireshark-dev.header-files)
