@@ -94,6 +94,8 @@ Buildrequires: cmake3
 ##BuildRequires: libnghttp2-devel
 ##BuildRequires: systemd-rpm-macros
 
+# for cmake3 build macro
+BuildRequires: epel-rpm-macros
 
 
 Obsoletes: wireshark-qt, wireshark-gtk
