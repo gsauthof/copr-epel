@@ -153,7 +153,7 @@ and plugins.
   -DBUILD_dcerpcidl2wrs=OFF \
   %{nil}
 
-#  -DBUILD_sdjournal=ON \
+#  -DBUILD_sdjournal=ON
 
 %cmake_build
 
