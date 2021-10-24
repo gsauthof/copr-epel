@@ -179,7 +179,7 @@ mkdir -p "${IDIR}/epan/dissectors"
 mkdir -p "${IDIR}/wiretap"
 mkdir -p "${IDIR}/wsutil"
 mkdir -p "${IDIR}/wsutil/wmem"
-mkdir -p %{buildroot}%{_udevrulesdir}
+##mkdir -p %{buildroot}%{_udevrulesdir}
 install -m 644 %{_vpath_builddir}/config.h epan/register.h	"${IDIR}/"
 install -m 644 cfile.h file.h		"${IDIR}/"
 install -m 644 ws_symbol_export.h	"${IDIR}/"
@@ -240,7 +240,7 @@ find %{buildroot} -type f -name "*.la" -delete
 %endif
 %attr(0750, root, wireshark) %caps(cap_net_raw,cap_net_admin=ep) %{_bindir}/dumpcap
 %{_bindir}/rawshark
-%{_udevrulesdir}/90-wireshark-usbmon.rules
+##%{_udevrulesdir}/90-wireshark-usbmon.rules
 %{_libdir}/lib*.so.*
 %dir %{_libdir}/wireshark
 %dir %{_libdir}/wireshark/extcap
@@ -248,7 +248,7 @@ find %{buildroot} -type f -name "*.la" -delete
 %{_libdir}/wireshark/extcap/ciscodump
 %{_libdir}/wireshark/extcap/udpdump
 %{_libdir}/wireshark/extcap/sshdump
-%{_libdir}/wireshark/extcap/sdjournal
+#%{_libdir}/wireshark/extcap/sdjournal
 %{_libdir}/wireshark/extcap/dpauxmon
 %{_libdir}/wireshark/extcap/androiddump
 %dir %{_libdir}/wireshark/cmake
@@ -279,14 +279,14 @@ find %{buildroot} -type f -name "*.la" -delete
 %{_mandir}/man1/ciscodump.*
 %{_mandir}/man1/randpktdump.*
 %{_mandir}/man1/dpauxmon.*
-%{_mandir}/man1/sdjournal.*
+##%{_mandir}/man1/sdjournal.*
 %{_mandir}/man4/extcap.*
 %if %{with_maxminddb} && 0%{?fedora}
 %{_mandir}/man1/mmdbresolve.*
 %endif
 %dir %{_datadir}/wireshark
 %{_datadir}/wireshark/*
-%{_docdir}/wireshark/*.html
+##%{_docdir}/wireshark/*.html
 
 %files devel
 %doc doc/README.* ChangeLog
