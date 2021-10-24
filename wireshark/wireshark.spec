@@ -123,7 +123,7 @@ and plugins.
 
 
 %prep
-%autosetup -S git
+%autosetup -S git -n wireshark-3.6.0rc1
 
 %build
 %cmake -G "Unix Makefiles" \
