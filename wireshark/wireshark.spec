@@ -16,7 +16,7 @@
 Summary:	Network traffic analyzer
 Name:		wireshark
 Version:	3.6.0~rc1
-Release:	1%{?dist}
+Release:	2%{?dist}
 Epoch:		1
 License:	GPL+
 Url:		http://www.wireshark.org/
@@ -26,6 +26,10 @@ Source0:	https://wireshark.org/download/src/%{name}-3.6.0rc1.tar.xz
 ##Source1:        https://www.wireshark.org/download/src/all-versions/SIGNATURES-%{version}.txt
 ##Source2:	90-wireshark-usbmon.rules
 ##Source3:	wireshark.sysusers
+
+
+Patch0: eti-eobi.patch
+
 
 # Fedora-specific
 ##Patch2:		wireshark-0002-Customize-permission-denied-error.patch
