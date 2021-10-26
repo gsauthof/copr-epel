@@ -122,7 +122,7 @@ transferred over HTTP or CIFS, or play back an RTP audio stream.
 %package	cli
 Summary:	Network traffic analyzer
 Requires(pre):	shadow-utils
-Requires(post): systemd-udev
+##Requires(post): systemd-udev
 
 %description cli
 This package contains command-line utilities, plugins, and documentation for
