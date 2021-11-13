@@ -15,14 +15,14 @@
 
 Summary:	Network traffic analyzer
 Name:		wireshark
-Version:	3.6.0~rc1
-Release:	3%{?dist}
+Version:	3.6.0~rc3
+Release:	1%{?dist}
 Epoch:		1
 License:	GPL+
 Url:		http://www.wireshark.org/
 
 ##Source0:	https://wireshark.org/download/src/%{name}-%{version}.tar.xz
-Source0:	https://wireshark.org/download/src/%{name}-3.6.0rc1.tar.xz
+Source0:	https://wireshark.org/download/src/%{name}-3.6.0rc3.tar.xz
 ##Source1:        https://www.wireshark.org/download/src/all-versions/SIGNATURES-%{version}.txt
 ##Source2:	90-wireshark-usbmon.rules
 ##Source3:	wireshark.sysusers
@@ -139,7 +139,7 @@ and plugins.
 
 
 %prep
-%autosetup -S git -n wireshark-3.6.0rc1
+%autosetup -S git -n wireshark-3.6.0rc3
 
 %build
 %cmake3 -G "Unix Makefiles" \
