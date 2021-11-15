@@ -16,7 +16,7 @@
 Summary:	Network traffic analyzer
 Name:		wireshark
 Version:	3.6.0~rc3
-Release:	1%{?dist}
+Release:	2%{?dist}
 Epoch:		1
 License:	GPL+
 Url:		http://www.wireshark.org/
